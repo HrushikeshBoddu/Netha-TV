@@ -1,0 +1,76 @@
+/* Primary Colors */
+.primary-bg {
+    background-color: var(--primary);
+  }
+  
+  .primary-text {
+    color: var(--primary);
+  }
+  
+  /* Secondary Colors */
+  .secondary-bg {
+    background-color: var(--secondary);
+  }
+  
+  .secondary-text {
+    color: var(--secondary);
+  }
+  
+  /* Accent Colors */
+  .accent-bg {
+    background-color: var(--accent);
+  }
+  
+  .accent-text {
+    color: var(--accent);
+  }
+  
+  /* Dark Colors */
+  .dark-bg {
+    background-color: var(--dark);
+  }
+  
+  .dark-text {
+    color: var(--dark);
+  }
+  
+  /* Light Colors */
+  .light-bg {
+    background-color: var(--light);
+  }
+  
+  .light-text {
+    color: var(--light);
+  }
+  
+  /* Gradient Backgrounds */
+  .gradient-bg-primary {
+    background: linear-gradient(135deg, var(--primary), var(--secondary));
+  }
+  
+  .gradient-bg-accent {
+    background: linear-gradient(135deg, var(--accent), #ff9a5f);
+  }
+  
+  /* Text Gradients */
+  .text-gradient-primary {
+    background: linear-gradient(90deg, var(--primary), var(--secondary));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+  
+  .text-gradient-accent {
+    background: linear-gradient(90deg, var(--accent), #ff9a5f);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+  
+  /* Glassmorphism Effect */
+  .glass-effect {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+  }

@@ -1,0 +1,538 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Netha - TV | Netha - TV Content Online</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #6e45e2;
+            --secondary: #88d3ce;
+            --accent: #ff7e5f;
+            --dark: #1a1a2e;
+            --light: #f8f9fa;
+            --gradient: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            --glass: rgba(255, 255, 255, 0.15);
+        }
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #f0f2f5;
+            color: var(--dark);
+            overflow-x: hidden;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+        
+        /* Animated Background */
+        .bg-animated {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+            background-size: 400% 400%;
+            animation: gradient 15s ease infinite;
+        }
+        
+        @keyframes gradient {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        
+        /* Glassmorphism Navbar */
+        .navbar {
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            background-color: var(--glass) !important;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.2);
+        }
+        
+        .navbar-brand {
+            font-weight: 800;
+            font-size: 1.8rem;
+            background: linear-gradient(to right, var(--primary), var(--accent));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+        
+        /* Hero Carousel */
+        .hero-carousel {
+            border-radius: 20px;
+            overflow: hidden;
+            margin-top: 1rem;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+        }
+        
+        .carousel-item {
+            height: 70vh;
+            min-height: 400px;
+            position: relative;
+        }
+        
+        .carousel-item::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to top, rgba(0,0,0,0.8) 0%, transparent 50%);
+        }
+        
+        .carousel-item img {
+            object-fit: cover;
+            width: 100%;
+            height: 100%;
+            transition: transform 8s ease;
+        }
+        
+        .carousel-item:hover img {
+            transform: scale(1.1);
+        }
+        
+        .carousel-caption {
+            bottom: 25%;
+            text-align: left;
+            left: 10%;
+            right: auto;
+            z-index: 10;
+        }
+        
+        /* Content Cards */
+        .trend-card {
+            border: none;
+            border-radius: 15px;
+            overflow: hidden;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            margin-bottom: 30px;
+            background: white;
+            box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.1);
+        }
+        
+        .trend-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.2);
+        }
+        
+        .trend-card .card-img-top {
+            height: 200px;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        
+        .trend-card:hover .card-img-top {
+            transform: scale(1.05);
+        }
+        
+        /* Events Popup */
+        .events-popup {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 350px;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            z-index: 1000;
+            overflow: hidden;
+            transform: translateY(120%);
+            transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        
+        .events-popup.show {
+            transform: translateY(0);
+        }
+        
+        .events-popup-header {
+            background: var(--gradient);
+            color: white;
+            padding: 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .events-popup-body {
+            padding: 15px;
+        }
+        
+        .event-item {
+            display: flex;
+            margin-bottom: 15px;
+            align-items: center;
+        }
+        
+        .event-date {
+            background: var(--primary);
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 10px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            margin-right: 15px;
+            flex-shrink: 0;
+        }
+        
+        .event-date .day {
+            font-weight: 700;
+            font-size: 1.2rem;
+            line-height: 1;
+        }
+        
+        .event-date .month {
+            font-size: 0.7rem;
+            text-transform: uppercase;
+        }
+        
+        .event-info h5 {
+            margin-bottom: 5px;
+            font-size: 1rem;
+        }
+        
+        .event-info p {
+            font-size: 0.8rem;
+            color: #666;
+            margin-bottom: 0;
+        }
+        
+        .close-popup {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.2rem;
+            cursor: pointer;
+        }
+        
+        /* Ad Modal */
+        .ad-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.8);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 2000;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+        }
+        
+        .ad-modal.show {
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        .ad-modal-content {
+            background: white;
+            border-radius: 15px;
+            width: 90%;
+            max-width: 800px;
+            overflow: hidden;
+        }
+        
+        .ad-modal-header {
+            padding: 15px;
+            background: var(--gradient);
+            color: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .ad-modal-body {
+            padding: 0;
+        }
+        
+        /* Footer */
+        footer {
+            background: var(--dark);
+            color: white;
+            padding: 3rem 0;
+            margin-top: auto;
+        }
+        
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+        
+        .footer-links a {
+            color: white;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .footer-links a:hover {
+            color: var(--accent);
+        }
+        
+        .social-icons {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+        
+        .social-icons a {
+            color: white;
+            font-size: 1.5rem;
+            transition: transform 0.3s;
+        }
+        
+        .social-icons a:hover {
+            transform: translateY(-5px);
+            color: var(--accent);
+        }
+        
+        .copyright {
+            text-align: center;
+            color: rgba(255,255,255,0.7);
+            font-size: 0.9rem;
+        }
+        
+        /* Responsive Adjustments */
+        @media (max-width: 768px) {
+            .events-popup {
+                width: 90%;
+                right: 5%;
+                bottom: 10px;
+            }
+            
+            .hero-carousel .carousel-caption h3 {
+                font-size: 1.8rem;
+            }
+            
+            .hero-carousel .carousel-caption p {
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Animated Background -->
+    <div class="bg-animated"></div>
+    
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark sticky-top">
+        <div class="container">
+            <a class="navbar-brand" href="#">ULTRA TREND</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="#"><i class="fas fa-home me-1"></i> Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#"><i class="fas fa-fire me-1"></i> Trends</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#"><i class="fas fa-user me-1"></i> Profile</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="flex-grow-1">
+        <!-- Hero Carousel -->
+        <div class="container mt-4">
+            <div id="heroCarousel" class="carousel slide hero-carousel" data-bs-ride="carousel">
+                <div class="carousel-inner">
+                    <div class="carousel-item active">
+                        <img src="https://source.unsplash.com/random/1200x600/?tech,future" class="d-block w-100" alt="Future Tech">
+                        <div class="carousel-caption">
+                            <h3>Discover The Future Today</h3>
+                            <p>Explore groundbreaking innovations that are shaping tomorrow's world right now.</p>
+                            <button class="btn btn-primary px-4 py-2 rounded-pill">Explore Now</button>
+                        </div>
+                    </div>
+                    <div class="carousel-item">
+                        <img src="https://source.unsplash.com/random/1200x600/?fashion,trend" class="d-block w-100" alt="Fashion Trend">
+                        <div class="carousel-caption">
+                            <h3>Hot Summer Trends 2023</h3>
+                            <p>Get ahead of the curve with this season's must-have styles and accessories.</p>
+                            <button class="btn btn-primary px-4 py-2 rounded-pill">Shop Trends</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Trending Content -->
+        <div class="container py-5">
+            <h2 class="text-center mb-5">🔥 Trending Now</h2>
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="card trend-card">
+                        <img src="https://source.unsplash.com/random/600x400/?gadget" class="card-img-top" alt="Tech Gadget">
+                        <div class="card-body">
+                            <h5 class="card-title">New Gadget Alert</h5>
+                            <p class="card-text">This device is changing the game. See why everyone's talking about it.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card trend-card">
+                        <img src="https://source.unsplash.com/random/600x400/?fitness" class="card-img-top" alt="Fitness Trend">
+                        <div class="card-body">
+                            <h5 class="card-title">Fitness Challenge</h5>
+                            <p class="card-text">Join thousands transforming their bodies with this simple routine.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card trend-card">
+                        <img src="https://source.unsplash.com/random/600x400/?recipe" class="card-img-top" alt="Food Trend">
+                        <div class="card-body">
+                            <h5 class="card-title">Viral Recipes</h5>
+                            <p class="card-text">These 5-minute meals are breaking the internet. Try them today!</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-links">
+                <a href="#">Home</a>
+                <a href="#">Trending</a>
+                <a href="#">About</a>
+                <a href="#">Contact</a>
+                <a href="#">Privacy Policy</a>
+                <a href="#">Terms</a>
+            </div>
+            <div class="social-icons">
+                <a href="#"><i class="fab fa-facebook-f"></i></a>
+                <a href="#"><i class="fab fa-twitter"></i></a>
+                <a href="#"><i class="fab fa-instagram"></i></a>
+                <a href="#"><i class="fab fa-tiktok"></i></a>
+                <a href="#"><i class="fab fa-youtube"></i></a>
+            </div>
+            <div class="copyright">
+                &copy; 2025 Netha - TV All rights reserved.
+            </div>
+        </div>
+    </footer>
+
+    <!-- Events Popup -->
+    <div class="events-popup" id="eventsPopup">
+        <div class="events-popup-header">
+            <h5 class="mb-0"><i class="fas fa-calendar-alt me-2"></i>Upcoming Event</h5>
+            <button class="close-popup" id="closePopup">&times;</button>
+        </div>
+        <div class="events-popup-body">
+            <div class="event-item">
+                <div class="event-date">
+                    <div class="day">15</div>
+                    <div class="month">Jun</div>
+                </div>
+                <div class="event-info">
+                    <h5>Global Music Festival</h5>
+                    <p>Miami, FL • 8:00 PM</p>
+                </div>
+            </div>
+            <button class="btn btn-primary w-100" id="watchAdBtn">Watch Ad for 20% Off Tickets</button>
+        </div>
+    </div>
+
+    <!-- Ad Modal -->
+    <div class="ad-modal" id="adModal">
+        <div class="ad-modal-content">
+            <div class="ad-modal-header">
+                <h5 class="mb-0">Special Offer</h5>
+                <button class="close-popup" id="closeAdModal">&times;</button>
+            </div>
+            <div class="ad-modal-body">
+                <div class="ratio ratio-16x9">
+                    <iframe id="adVideo" src="https://www.youtube.com/embed/dQw4w9WgXcQ?autoplay=0" allowfullscreen></iframe>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <script>
+        // Event popup management
+        let popupTimeout;
+        const eventsPopup = document.getElementById('eventsPopup');
+        const adModal = document.getElementById('adModal');
+        
+        // Function to show popup
+        function showPopup() {
+            eventsPopup.classList.add('show');
+            // Set timeout to show again after 2 minutes if closed
+            popupTimeout = setTimeout(() => {
+                if (!eventsPopup.classList.contains('show')) {
+                    showPopup();
+                }
+            }, 120000); // 2 minutes = 120,000ms
+        }
+        
+        // Show popup after initial delay (5 seconds)
+        setTimeout(showPopup, 5000);
+        
+        // Close popup
+        document.getElementById('closePopup').addEventListener('click', function() {
+            eventsPopup.classList.remove('show');
+            // Reset the timer when manually closed
+            clearTimeout(popupTimeout);
+            popupTimeout = setTimeout(showPopup, 120000);
+        });
+        
+        // Watch ad button
+        document.getElementById('watchAdBtn').addEventListener('click', function() {
+            eventsPopup.classList.remove('show');
+            adModal.classList.add('show');
+            document.getElementById('adVideo').src = "https://www.youtube.com/embed/dQw4w9WgXcQ?autoplay=1";
+            // Reset the timer when ad is watched
+            clearTimeout(popupTimeout);
+            popupTimeout = setTimeout(showPopup, 120000);
+        });
+        
+        // Close ad modal
+        document.getElementById('closeAdModal').addEventListener('click', function() {
+            adModal.classList.remove('show');
+            document.getElementById('adVideo').src = "";
+        });
+        
+        // Close modal when clicking outside
+        window.addEventListener('click', function(e) {
+            if (e.target === adModal) {
+                adModal.classList.remove('show');
+                document.getElementById('adVideo').src = "";
+            }
+        });
+    </script>
+</body>
+</html>
