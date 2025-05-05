@@ -203,14 +203,16 @@ const Home = () => {
             <p className="text-center mb-4">
               Never miss our latest videos! Subscribe to our YouTube channel for weekly updates.
             </p>
-            <Button
-              variant="danger"
-              size="lg"
-              onClick={handleSubscribe}
-              className="mb-3"
-            >
-              Subscribe Now
-            </Button>
+            <a
+  href="https://www.youtube.com/@NETHATV9?sub_confirmation=1"
+  target="_blank"
+  rel="noopener noreferrer"
+  style={{ textDecoration: 'none' }} // optional: removes underline
+>
+  <Button variant="danger" size="lg" className="mb-3">
+    Subscribe Now
+  </Button>
+</a>
             <small className="text-muted">
               You can unsubscribe anytime
             </small>
@@ -499,12 +501,12 @@ const Home = () => {
                   <Col md={8}>
                     <h4 className="mb-2"></h4>
                     <p className="mb-0">
-                    Support community-driven media and unlock exclusive stories that uplift and empower.
+                      Support community-driven media and unlock exclusive stories that uplift and empower.
                     </p>
                   </Col>
                   <Col md={4} className="text-md-end mt-3 mt-md-0">
                     <Link to="/about">
-                      <Button variant="outline-light" style={{marginLeft:'150px'}}>Learn More</Button>
+                      <Button variant="outline-light" style={{ marginLeft: '150px' }}>Learn More</Button>
                     </Link>
                   </Col>
                 </Row>
@@ -580,17 +582,27 @@ const Home = () => {
                       onClick={() => setSelectedEvent(event)}
                       style={{ cursor: 'pointer' }}
                     >
-                      <img
-                        src={`http://127.0.0.1:8000/${event.banner_path.replace(/\\/g, '/')}`}
-                        alt={event.title || 'Event Image'}
-                        className="img-fluid shadow-sm"
+                      <div
                         style={{
                           height: '350px',
                           width: '100%',
-                          objectFit: 'cover',
-                          borderRadius: '0px',
+                          overflow: 'hidden',
                         }}
-                      />
+                      >
+                        <img
+                          src={`http://127.0.0.1:8000/${event.banner_path.replace(/\\/g, '/')}`}
+                          alt={event.title || 'Event Image'}
+                          className="img-fluid shadow-sm"
+                          style={{
+                            height: '100%',
+                            width: '100%',
+                            // objectFit: 'cover',
+                            borderRadius: '0px',
+                          }}
+                        />
+                      </div>
+
+
                     </div>
                   </Col>
                 ))}
@@ -657,7 +669,7 @@ const Home = () => {
                         style={{
                           height: '350px',
                           width: '100%',
-                          objectFit: 'cover',
+                          // objectFit: 'contain',
                         }}
                       />
                     </div>
@@ -731,7 +743,7 @@ const Home = () => {
                         style={{
                           height: '350px',
                           width: '100%',
-                          objectFit: 'cover',
+                          // objectFit: 'cover',
                         }}
                       />
                     </div>
