@@ -22,7 +22,7 @@ load_dotenv()
 
 # ✅ Environment variables with sensible defaults
 DB_USER = os.getenv("MYSQL_USER", "root")
-DB_PASSWORD = os.getenv("MYSQL_PASSWORD", "123456")
+DB_PASSWORD = os.getenv("MYSQL_PASSWORD", "1234567890")
 DB_NAME = os.getenv("MYSQL_DB", "NethaTV")  # 🔄 use NethaTV as default
 DB_HOST = os.getenv("MYSQL_HOST", "localhost")
 DB_PORT = os.getenv("MYSQL_PORT", "3306")
