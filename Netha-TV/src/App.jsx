@@ -11,10 +11,10 @@ import Posts from './pages/Posts';
 import Vlogs from './pages/Vlogs';
 import ContactForm from './pages/ContactForm';
 
-
+// test line added to check Git added
 function App() {
   return (
-    <Router> {/* Wrap the entire app with Router */}
+    <Router> {/* Wrap the entire app with Router api end points */}
       <div className="app">
         <Navbar />
         <main className="main-content">
