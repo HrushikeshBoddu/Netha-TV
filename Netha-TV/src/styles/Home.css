@@ -1,0 +1,155 @@
+/* Hero Carousel Styles */
+.hero-carousel {
+    width: 100%;
+    /* background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%); */
+    position: relative;
+    background-color: #e01919;
+    margin-top: 30px;
+  }
+  
+  .hero-slide {
+    background-size: cover;
+    background-position: center;
+    width: 100%;
+  }
+  
+  /* Custom indicator dots */
+  .hero-carousel-container .carousel-indicators {
+    position: absolute;
+    bottom: 30px;
+    margin: 0;
+    left: 0;
+    right: 0;
+    justify-content: center;
+  }
+  
+  .hero-carousel-container .carousel-indicators button {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    margin: 0 6px;
+    border: none;
+    /* background-color: rgba(255,255,255,0.5); */
+  }
+  
+  .hero-carousel-container .carousel-indicators button.active {
+    background-color: #fff;
+    width: 12px;
+    height: 12px;
+  }
+  
+  /* Gradient text effect */
+  .gradient-text {
+    background: linear-gradient(90deg, #ff8a00, #e52e71);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+  /* Override default Bootstrap carousel indicator styles */
+.hero-carousel-container .carousel-indicators button {
+  background-color: #000 !important;  /* dark background for better visibility */
+  opacity: 0.6;
+  width: 12px;
+  height: 12px;
+  margin: 0 6px;
+  border-radius: 50%;
+  border: none;
+}
+
+.hero-carousel-container .carousel-indicators .active {
+  background-color: #ff4081 !important; /* active dot color */
+  opacity: 1;
+}
+
+.all-preview{
+  background-color: #f2f2f2;
+}
+
+.card {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  border-radius: 0;
+}
+
+.card-body {
+  flex-grow: 1;
+  
+}
+.trending-section{
+  background-color: #f2f2f2;
+}
+.hero-carousel{
+  background-color:#e1e1e9;
+}
+.Trend-Head{
+  color: #000;
+}
+.img-fluid{
+  border-radius: 0px;
+}
+.event-image-card img{
+  border-radius: 0px;
+}
+
+
+
+/* Remove border from images inside the 4th trending card (index === 3) */
+.trending-section .slick-slide img {
+  border: 0 !important;
+  box-shadow: none !important;
+}
+
+/* Mobile view: <768px */
+@media (max-width: 767px) {
+  .hero-carousel {
+    margin-top: 20px;
+  }
+
+  .hero-slide {
+    height: 50vh !important;
+  }
+
+  .hero-slide h1 {
+    font-size: 1.5rem !important;
+  }
+
+  .hero-slide p {
+    font-size: 0.95rem;
+  }
+
+  .promo-card h4 {
+    font-size: 1.2rem;
+  }
+
+  .promo-card p {
+    font-size: 0.95rem;
+  }
+
+  .event-image-card img,
+  .post-image-card img,
+  .vlog-image-card img {
+    height: 250px !important;
+  }
+}
+
+/* Tablet view: 768px - 1023px */
+@media (min-width: 768px) and (max-width: 1023px) {
+  .hero-slide {
+    height: 55vh !important;
+  }
+
+  .hero-slide h1 {
+    font-size: 2rem !important;
+  }
+
+  .hero-slide p {
+    font-size: 1rem;
+  }
+
+  .event-image-card img,
+  .post-image-card img,
+  .vlog-image-card img {
+    height: 300px !important;
+  }
+}

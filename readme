@@ -1,0 +1,158 @@
+# 🎬 Content Backend using FastAPI
+
+This backend is designed for creators like YouTubers to manage their Vlogs, Posts, and Live Sessions with banner images, history, and smart top-5 management.
+
+---
+
+.\venv\Scripts\activate
+uvicorn app.main:app
+pip freeze > requirements.txt
+npm run dev
+
+## 🚀 Tech Stack
+
+- **Backend:** FastAPI
+- **Database:** SQLite
+- **ORM:** SQLAlchemy
+- **Static Storage:** Local file system (`/static/banners`)
+- **Upload:** Banner image for each Vlog/Post/Live
+- **New/Old System:** Stores only top 5 recent vlogs in `new_vlogs`, keeps full history in `all_vlogs`
+
+---
+
+## 📂 Project Structure
+
+P:\Work\Backend\
+├── app\
+│   ├── __init__.py
+│   ├── main.py
+│   ├── database.py
+│   ├── models.py
+│   ├── schemas.py
+│   └── routes\
+│       ├── __init__.py
+│       ├── vlogs.py
+│       ├── posts.py
+│       ├── lives.py
+│       └── history.py
+├── static\
+│   └── banners\
+├── tests/
+│   ├── __init__.py
+│   ├── conftest.py
+│   ├── test_vlogs.py
+│   ├── test_posts.py
+│   └── test_lives.py
+├── requirements.txt
+└── README.md
+
+
+
+---
+
+## 📡 API Endpoints
+
+---
+
+### 🎥 Vlogs
+
+#### 🔹 `POST /vlogs/`
+Upload a new vlog with:
+- `title`: string
+- `video_url`: string
+- `description`: string
+- `banner`: image file (jpg/png)
+
+**Rules:**
+- Only 5 vlogs are kept in `new_vlogs`
+- Automatically deletes oldest in `new_vlogs` if adding a 6th
+- Duplicate `video_url` not allowed
+- Also stored in `all_vlogs` for history
+
+#### 🔹 `GET /vlogs/new`
+Returns top 5 most recent vlogs (`new_vlogs` table).
+
+#### 🔹 `GET /vlogs/all`
+Returns all vlogs ever posted (`all_vlogs` table).
+
+#### 🔹 `DELETE /vlogs/new/{vlog_id}`
+Deletes a vlog entry from the top-5 list (`new_vlogs`) only.
+
+---
+
+### 📝 Posts
+
+#### 🔹 `POST /posts/`
+Create a blog-style post.
+- `title`: string
+- `content`: string
+- `banner`: image file
+
+#### 🔹 `GET /posts/`
+Get list of all blog posts.
+
+---
+
+### 📺 Live Sessions
+
+#### 🔹 `POST /lives/`
+Add a live session.
+- `title`: string
+- `schedule`: datetime (`YYYY-MM-DDTHH:MM:SS`)
+- `description`: string
+- `banner`: image file
+
+#### 🔹 `GET /lives/`
+Get list of all upcoming/live sessions.
+
+---
+
+### 📜 History
+
+#### 🔹 `GET /history/`
+Returns combined history of:
+- All vlogs
+- All posts
+- All lives
+
+Each entry looks like:
+```json
+{
+  "id": 1,
+  "type": "vlog",
+  "title": "My First Vlog",
+  "created_at": "2025-04-02T14:00:00"
+}
+
+🏠 Default
+🔹 GET /
+Health check → Returns a welcome message.
+
+🧠 Pydantic Schemas
+Schema	Fields
+NewVlog	id, title, video_url, description, banner_path, created_at
+AllVlog	same as above
+Post	id, title, content, banner_path, created_at
+Live	id, title, schedule, description, banner_path, created_at
+📂 Uploads
+Banner images are saved to: /static/banners/
+
+Access via: http://localhost:8000/static/banners/filename.jpg
+
+📦 How to Run
+Clone the project
+
+Install dependencies:
+pip install -r requirements.txt
+
+Start server:
+    uvicorn app.main:app --reload
+
+Open in browser:
+    Swagger UI: http://127.0.0.1:8000/docs
+
+    Test APIs easily from there!
+
+
+
+

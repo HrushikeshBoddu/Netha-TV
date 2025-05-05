@@ -1,0 +1,72 @@
+Base styles
+.navbar {
+    padding: 0.75rem 1rem;
+    transition: all 0.3s ease-in-out;
+  }
+  
+  .navbar-brand .logo-text {
+    font-weight: bold;
+    font-size: 1.2rem;
+  }
+  
+  .navbar-nav .nav-link {
+    font-size: 1rem;
+    transition: color 0.2s ease-in-out;
+  }
+  
+  .navbar-nav .nav-link.active {
+    color: var(--accent, #6200ea);
+  }
+  
+  /* Adjust spacing on wider screens */
+  @media (min-width: 1024px) {
+    .navbar-nav {
+      gap: 32px !important;
+    }
+  
+    .nav-link span {
+      font-size: 1rem;
+    }
+  }
+  
+  /* Tablet view: 768px - 1023px */
+  @media (max-width: 1023px) and (min-width: 768px) {
+    .navbar-nav {
+      gap: 20px !important;
+    }
+  
+    .nav-link span {
+      font-size: 0.95rem;
+    }
+  }
+  
+  /* Mobile view: <768px */
+  @media (max-width: 767px) {
+    .navbar {
+      padding: 0.5rem 1rem;
+    }
+  
+    .navbar-brand .logo-text {
+      font-size: 1rem;
+    }
+  
+    .navbar-toggler {
+      border: none;
+    }
+  
+    .navbar-nav {
+      flex-direction: column !important;
+      gap: 12px !important;
+      padding-top: 1rem;
+    }
+  
+    .nav-link {
+      justify-content: flex-start;
+      padding: 0.5rem 1rem;
+    }
+  
+    .nav-link span {
+      font-size: 0.9rem;
+    }
+  }
+  

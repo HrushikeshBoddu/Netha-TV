@@ -1,0 +1,66 @@
+{/* Trending Vlogs Section - Exactly 4 items */}
+      <section className="section trending-section py-5">
+        <Container>
+          <motion.h2
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.5, delay: 0.6 }}
+            className="mb-4 d-flex align-items-center"
+          >
+            <span className="me-2">🔥</span> Trending Now
+          </motion.h2>
+
+          <Row className="g-4">
+            {trendingVlogs.map((vlog, index) => (
+              <Col key={vlog.id} xs={12} sm={6} lg={3}>
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.3, delay: 0.2 + index * 0.1 }}
+                >
+                  {vlog.isPlaceholder ? (
+                    <div className="card placeholder-card h-100">
+                      <div className="card-body d-flex flex-column justify-content-center align-items-center text-center">
+                        <div className="placeholder-thumbnail mb-3"></div>
+                        <h5 className="card-title">{vlog.title}</h5>
+                      </div>
+                    </div>
+                  ) : (
+                    <Card
+                      item={vlog}
+                      type="vlog"
+                      showDescription={false}
+                    />
+                  )}
+                </motion.div>
+              </Col>
+            ))}
+          </Row>
+
+          {/* Inline Ad */}
+          {!adClosed && (
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.5, delay: 1 }}
+              className="mt-5 mb-4"
+            >
+              <div className="promo-card p-4 rounded-3 bg-dark">
+                <Row className="align-items-center">
+                  <Col md={8}>
+                    <h4 className="mb-2">Upgrade to Premium</h4>
+                    <p className="mb-0">
+                      Enjoy ad-free experience and exclusive content with our premium membership.
+                    </p>
+                  </Col>
+                  <Col md={4} className="text-md-end mt-3 mt-md-0">
+                    <Button variant="outline-light">
+                      Learn More
+                    </Button>
+                  </Col>
+                </Row>
+              </div>
+            </motion.div>
+          )}
+        </Container>
+      </section>

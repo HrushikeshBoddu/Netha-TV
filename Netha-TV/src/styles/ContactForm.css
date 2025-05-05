@@ -1,0 +1,122 @@
+.contact-form-container {
+    padding: 40px;
+    max-width: 600px;
+    margin: 15px auto;
+  }
+  
+  .contact-form-container h2 {
+    color: black; /* Heading "Contact Us" in black */
+    margin-bottom: 20px;
+  }
+  
+  .contact-form-container form label {
+    color: black; /* ✅ Labels like "Name", "Email", etc. in black */
+    font-weight: 600; /* Make label text slightly bolder */
+    margin-bottom: 5px;
+    display: inline-block;
+  }
+  
+  .contact-form-container input,
+  .contact-form-container textarea {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid black; /* ✅ Black border around input and textarea */
+    color: black; /* ✅ Text inside input/textarea in black */
+    background-color: white;
+    margin-bottom: 15px;
+    border-radius: 4px;
+    font-size: 16px;
+  }
+  
+  .contact-form-container button {
+    padding: 10px 20px;
+    cursor: pointer;
+    background-color: black; /* Button background black */
+    color: white; /* Button text white */
+    border: none;
+    border-radius: 4px;
+    transition: background-color 0.3s ease;
+  }
+  
+  .contact-form-container button:hover {
+    background-color: #333; /* Slightly lighter black on hover */
+  }
+
+  .floating-youtube-button {
+    position: fixed;
+    top: 50%;
+    right: 20px;
+    transform: translateY(-50%);
+    width: 70px;
+    height: 70px;
+    background-color: #ff0000;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 28px;
+    cursor: pointer;
+    z-index: 1000;
+    box-shadow: 0 0 15px rgba(255, 0, 0, 0.6);
+    animation: zoomCycle 5s ease-in-out infinite;
+    transition: transform 0.3s ease;
+  }
+  
+  .floating-youtube-button .pulse-ring {
+    position: absolute;
+    width: 90px;
+    height: 90px;
+    border: 2px solid #ff4b4b;
+    border-radius: 50%;
+    animation: pulse 2s infinite;
+    opacity: 0.7;
+  }
+  
+  .floating-youtube-button .icon {
+    z-index: 1;
+  }
+  
+  .floating-youtube-button:hover {
+    transform: translateY(-50%) scale(1.1);
+  }
+  
+  @keyframes pulse {
+    0% {
+      transform: scale(0.9);
+      opacity: 0.8;
+    }
+    70% {
+      transform: scale(1.4);
+      opacity: 0;
+    }
+    100% {
+      transform: scale(0.9);
+      opacity: 0;
+    }
+  }
+  
+  /* 🔁 Zoom In → Hold → Zoom Out → Repeat */
+  @keyframes zoomCycle {
+    0% {
+      transform: translateY(-50%) scale(0.5);
+      opacity: 0;
+    }
+    20% {
+      transform: translateY(-50%) scale(1.1);
+      opacity: 1;
+    }
+    50% {
+      transform: translateY(-50%) scale(1);
+      opacity: 1;
+    }
+    80% {
+      transform: translateY(-50%) scale(1.1);
+      opacity: 1;
+    }
+    100% {
+      transform: translateY(-50%) scale(0.5);
+      opacity: 0;
+    }
+  }
+  

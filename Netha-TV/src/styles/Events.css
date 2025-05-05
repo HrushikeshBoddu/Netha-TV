@@ -1,0 +1,73 @@
+/* Events.css */
+.events-page {
+    max-width: 1200px;
+    background-color: #e1e1e9;
+  }
+  
+  .empty-state {
+    text-align: center;
+    padding: 3rem;
+    background-color: #f8f9fa;
+    border-radius: 0.5rem;
+  }
+  
+  .empty-state-icon {
+    color: #6c757d;
+    margin-bottom: 1rem;
+  }
+  
+  .empty-state-title {
+    font-size: 1.25rem;
+    margin-bottom: 0.5rem;
+    color: #343a40;
+  }
+  
+  .empty-state-text {
+    color: #6c757d;
+    margin-bottom: 1.5rem;
+  }
+  
+  .card {
+    transition: transform 0.2s;
+    height: 100%;
+  }
+  
+  .card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 4px 15px rgba(213, 222, 206, 0.1);
+  }
+  
+  .history-item {
+    position: relative;
+  }
+  
+  .history-item-remove {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: rgba(255, 255, 255, 0.8);
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.2s;
+    border: none;
+  }
+  
+  .history-item-remove:hover {
+    background: #fff;
+    color: #dc3545;
+  }
+  
+  /* Animation for card loading */
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  
+  .animated-card {
+    animation: fadeIn 0.5s ease-out forwards;
+  }
